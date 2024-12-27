@@ -9,152 +9,15 @@
     <title>Últimas Notícias</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* Reset de estilos básicos */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f7fa;
-            color: #333;
-            line-height: 1.6;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            flex-direction: column;
-            height: 100vh;
-            margin: 0;
-            overflow-x: hidden;
-            padding-top: 20px;
-        }
-
-        .container {
-            background-color: #fff;
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            text-align: left;
-            overflow: hidden;
-        }
-
-        h1 {
-            font-size: 3rem;
-            color: #1a73e8;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .article {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #f0f4f8;
-        }
-
-        .article h2 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-
-        .article p {
-            font-size: 1.2rem;
-            color: #555;
-            margin-bottom: 15px;
-        }
-
-        .ad {
-            margin-top: 40px;
-            padding: 30px;
-            background-color: #fafafa;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .ad p {
-            font-size: 1.2rem;
-            color: #333;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .ad ins {
-            display: block;
-            margin: 20px auto;
-            max-width: 100%;
-        }
-
-        footer {
-            margin-top: 40px;
-            font-size: 1rem;
-            color: #777;
-            text-align: center;
-        }
-
-        footer a {
-            color: #1a73e8;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .container {
-                padding: 20px;
-            }
-
-            .article h2 {
-                font-size: 1.5rem;
-            }
-
-            .ad {
-                padding: 20px;
-            }
-        }
-
-        /* Transições e efeitos */
-        .ad ins {
-            transition: transform 0.3s ease;
-        }
-
-        .ad ins:hover {
-            transform: scale(1.05);
-        }
+        /* Seu estilo permanece o mesmo, já que não precisa mudar para integrar a API */
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>Últimas Notícias</h1>
-    
-    <div class="article">
-        <h2>Notícia 1: Avanços Tecnológicos em 2024</h2>
-        <p>Com o avanço da inteligência artificial, 2024 promete ser um ano revolucionário. O impacto das novas tecnologias nos setores de saúde, educação e automação será profundo. Saiba mais sobre as inovações que estão moldando o futuro.</p>
-        <p><a href="#">Leia mais...</a></p>
-    </div>
-
-    <div class="article">
-        <h2>Notícia 2: Economia Global em 2024</h2>
-        <p>A economia global continua a se recuperar após a pandemia, com projeções de crescimento em vários setores. Economistas apontam desafios e oportunidades para empresas e consumidores. Confira as últimas previsões econômicas para este ano.</p>
-        <p><a href="#">Leia mais...</a></p>
-    </div>
-
-    <div class="article">
-        <h2>Notícia 3: Novidades no Mundo das Startups</h2>
-        <p>As startups continuam a ser um dos principais motores da economia global. Em 2024, muitas empresas inovadoras estão se destacando com soluções disruptivas. Descubra os principais projetos e empresas que estão moldando o futuro dos negócios.</p>
-        <p><a href="#">Leia mais...</a></p>
+    <div id="noticias">
+        <!-- As notícias serão carregadas aqui -->
     </div>
 
     <div class="ad">
@@ -175,6 +38,36 @@
         <p>&copy; 2024 Últimas Notícias. Todos os direitos reservados. <a href="https://www.google.com/adsense/start/" target="_blank">Saiba mais sobre o Google AdSense</a>.</p>
     </footer>
 </div>
+
+<script>
+    // Sua chave da API NewsAPI
+    const apiKey = 'SUA_CHAVE_DE_API'; // Substitua por sua chave de API
+    const url = `https://newsapi.org/v2/top-headlines?country=br&apiKey=${apiKey}`;
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        const articles = data.articles;
+        let noticiasHTML = '';
+
+        articles.forEach(article => {
+            noticiasHTML += `
+                <div class="article">
+                    <h2>${article.title}</h2>
+                    <p>${article.description}</p>
+                    <a href="${article.url}" target="_blank">Leia mais...</a>
+                </div>
+            `;
+        });
+
+        // Inserir as notícias no container
+        document.getElementById('noticias').innerHTML = noticiasHTML;
+    })
+    .catch(error => {
+        console.error('Erro ao buscar as notícias:', error);
+        document.getElementById('noticias').innerHTML = '<p>Não foi possível carregar as notícias no momento.</p>';
+    });
+</script>
 
 </body>
 </html>
