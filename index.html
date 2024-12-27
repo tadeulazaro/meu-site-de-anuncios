@@ -6,68 +6,164 @@
     <meta name="description" content="Últimas notícias e anúncios em nosso site">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9852494591359830"
      crossorigin="anonymous"></script>
-    <title>Últimas Notícias</title>
+    <title>Últimas Notícias e Anúncios</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* Seu estilo permanece o mesmo, já que não precisa mudar para integrar a API */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        #noticias {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .article {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .article h2 {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .article p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .article a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .article a:hover {
+            color: #0056b3;
+        }
+
+        .ad {
+            margin-top: 40px;
+            text-align: center;
+            background: #fffcf0;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #f0e4d7;
+        }
+
+        .ad p {
+            margin: 0 0 10px;
+            font-weight: bold;
+        }
+
+        .cta {
+            margin-top: 20px;
+            text-align: center;
+            background: #007BFF;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .cta:hover {
+            background: #0056b3;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #777;
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>🌟 Últimas Notícias e Anúncios 🌟</h1>
+        <div id="noticias">
+            <!-- As notícias serão carregadas aqui -->
+        </div>
 
-<div class="container">
-    <h1>Últimas Notícias</h1>
-    <div id="noticias">
-        <!-- As notícias serão carregadas aqui -->
+        <div class="ad">
+            <p><strong>Anúncio Destaque</strong> - Não perca nossas promoções exclusivas!</p>
+            <!-- Bloco de anúncio do Google AdSense -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-9852494591359830"
+                 data-ad-slot="6284829050"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            <div class="cta">Clique aqui e aproveite!</div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Últimas Notícias. Todos os direitos reservados. <a href="https://www.google.com/adsense/start/" target="_blank">Saiba mais sobre o Google AdSense</a>.</p>
+        </footer>
     </div>
 
-    <div class="ad">
-        <p><strong>Anúncio 1</strong> - Teste de Anúncio Nativo</p>
-        <!-- Bloco de anúncio do Google AdSense -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-9852494591359830"
-             data-ad-slot="6284829050"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
+    <script>
+        // Sua chave da API NewsAPI
+        const apiKey = 'SUA_CHAVE_DE_API'; // Substitua por sua chave de API
+        const url = `https://newsapi.org/v2/top-headlines?country=br&apiKey=${apiKey}`;
 
-    <footer>
-        <p>&copy; 2024 Últimas Notícias. Todos os direitos reservados. <a href="https://www.google.com/adsense/start/" target="_blank">Saiba mais sobre o Google AdSense</a>.</p>
-    </footer>
-</div>
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const articles = data.articles;
+            let noticiasHTML = '';
 
-<script>
-    // Sua chave da API NewsAPI
-    const apiKey = 'SUA_CHAVE_DE_API'; // Substitua por sua chave de API
-    const url = `https://newsapi.org/v2/top-headlines?country=br&apiKey=${apiKey}`;
+            articles.forEach(article => {
+                noticiasHTML += `
+                    <div class="article">
+                        <h2>${article.title}</h2>
+                        <p>${article.description}</p>
+                        <a href="${article.url}" target="_blank">Leia mais...</a>
+                    </div>
+                `;
+            });
 
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        const articles = data.articles;
-        let noticiasHTML = '';
-
-        articles.forEach(article => {
-            noticiasHTML += `
-                <div class="article">
-                    <h2>${article.title}</h2>
-                    <p>${article.description}</p>
-                    <a href="${article.url}" target="_blank">Leia mais...</a>
-                </div>
-            `;
+            // Inserir as notícias no container
+            document.getElementById('noticias').innerHTML = noticiasHTML;
+        })
+        .catch(error => {
+            console.error('Erro ao buscar as notícias:', error);
+            document.getElementById('noticias').innerHTML = '<p>Não foi possível carregar as notícias no momento.</p>';
         });
-
-        // Inserir as notícias no container
-        document.getElementById('noticias').innerHTML = noticiasHTML;
-    })
-    .catch(error => {
-        console.error('Erro ao buscar as notícias:', error);
-        document.getElementById('noticias').innerHTML = '<p>Não foi possível carregar as notícias no momento.</p>';
-    });
-</script>
-
+    </script>
 </body>
 </html>
