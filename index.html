@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Testando anúncios no site">
+    <meta name="description" content="Testando anúncios no site com o Google AdSense">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9852494591359830"
      crossorigin="anonymous"></script>
     <title>Testando Anúncios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         /* Reset de estilos básicos */
         * {
@@ -14,9 +15,10 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f4f8;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7fa;
             color: #333;
             line-height: 1.6;
             display: flex;
@@ -24,73 +26,104 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            overflow-x: hidden;
         }
+
         .container {
             background-color: #fff;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             width: 90%;
-            max-width: 900px;
+            max-width: 1200px;
             text-align: center;
+            overflow: hidden;
         }
+
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            font-size: 2.8rem;
             color: #1a73e8;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
+
         p {
             font-size: 1.2rem;
             margin-bottom: 30px;
             color: #555;
+            line-height: 1.8;
         }
+
         .ad {
             margin-top: 40px;
-            padding: 20px;
+            padding: 30px;
             background-color: #fafafa;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-        footer {
-            margin-top: 40px;
-            font-size: 0.9rem;
-            color: #777;
-        }
-        footer a {
-            color: #1a73e8;
-            text-decoration: none;
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
+
         .ad p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            font-weight: 500;
         }
+
         .ad ins {
             display: block;
             margin: 20px auto;
+            max-width: 100%;
         }
+
+        footer {
+            margin-top: 40px;
+            font-size: 1rem;
+            color: #777;
+        }
+
+        footer a {
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
         /* Responsividade */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
+
             .container {
                 padding: 20px;
             }
+
+            .ad {
+                padding: 20px;
+            }
+        }
+
+        /* Transições e efeitos */
+        .ad ins {
+            transition: transform 0.3s ease;
+        }
+
+        .ad ins:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Bem-vindo ao Teste de Anúncios1</h1>
-    <p>Este é um site de teste para integração de anúncios. Sinta-se à vontade para navegar e explorar os anúncios exibidos.</p>
+    <h1>Bem-vindo ao Teste de Anúncios</h1>
+    <p>Este site está sendo utilizado para testar a integração de anúncios com o Google AdSense. Navegue, explore e veja os anúncios que aparecem em diversas seções do site.</p>
 
     <div class="ad">
-        <p><strong>Anúncio 1</strong></p>
+        <p><strong>Anúncio 1</strong> - Teste de Anúncio Nativo</p>
         <!-- Bloco de anúncio do Google AdSense -->
         <ins class="adsbygoogle"
              style="display:block"
@@ -104,7 +137,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 Teste de Anúncios - Todos os direitos reservados. <a href="https://www.google.com/adsense/start/" target="_blank">Saiba mais sobre o Google AdSense</a>.</p>
+        <p>&copy; 2024 Teste de Anúncios. Todos os direitos reservados. <a href="https://www.google.com/adsense/start/" target="_blank">Saiba mais sobre o Google AdSense</a>.</p>
     </footer>
 </div>
 
