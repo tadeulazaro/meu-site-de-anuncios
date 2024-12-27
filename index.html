@@ -3,63 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Página de Parabéns para minha esposa">
-    <title>Parabéns, Amor!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <meta name="description" content="Últimas notícias e anúncios em nosso site">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9852494591359830"
+     crossorigin="anonymous"></script>
+    <title>Últimas Notícias</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Great Vibes', cursive;
-            background: url('https://source.unsplash.com/1600x900/?romantic,flowers') no-repeat center center fixed;
-            background-size: cover;
-            color: #fff;
-            text-align: center;
-        }
-
-        .content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.6); /* Sombra para destacar o texto */
-        }
-
-        h1 {
-            font-size: 4rem;
-            margin: 0;
-        }
-
-        p {
-            font-size: 1.5rem;
-            margin: 20px;
-        }
-
-        .hearts {
-            font-size: 2rem;
-            color: #ff69b4;
-            animation: float 1.5s infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
+        /* Seu estilo permanece o mesmo, já que não precisa mudar para integrar a API */
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>Feliz Aniversário, Meu Amor! 🎉</h1>
-                <h1>vai rola pau e agua🎉</h1>
-        <p>Hoje celebramos mais um ano da pessoa mais especial da minha vida. Que seu dia seja repleto de amor, alegria e muita felicidade. Eu te amo! ❤️</p>
-        <div class="hearts">
-            💖💘💝💗💓💕💞💟❣️💌
-        </div>
+
+<div class="container">
+    <h1>Últimas Notícias</h1>
+    <div id="noticias">
+        <!-- As notícias serão carregadas aqui -->
     </div>
+
+    <div class="ad">
+        <p><strong>Anúncio 1</strong> - Teste de Anúncio Nativo</p>
+        <!-- Bloco de anúncio do Google AdSense -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9852494591359830"
+             data-ad-slot="6284829050"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Últimas Notícias. Todos os direitos reservados. <a href="https://www.google.com/adsense/start/" target="_blank">Saiba mais sobre o Google AdSense</a>.</p>
+    </footer>
+</div>
+
+<script>
+    // Sua chave da API NewsAPI
+    const apiKey = 'SUA_CHAVE_DE_API'; // Substitua por sua chave de API
+    const url = `https://newsapi.org/v2/top-headlines?country=br&apiKey=${apiKey}`;
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        const articles = data.articles;
+        let noticiasHTML = '';
+
+        articles.forEach(article => {
+            noticiasHTML += `
+                <div class="article">
+                    <h2>${article.title}</h2>
+                    <p>${article.description}</p>
+                    <a href="${article.url}" target="_blank">Leia mais...</a>
+                </div>
+            `;
+        });
+
+        // Inserir as notícias no container
+        document.getElementById('noticias').innerHTML = noticiasHTML;
+    })
+    .catch(error => {
+        console.error('Erro ao buscar as notícias:', error);
+        document.getElementById('noticias').innerHTML = '<p>Não foi possível carregar as notícias no momento.</p>';
+    });
+</script>
+
 </body>
 </html>
