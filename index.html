@@ -3,80 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Últimas notícias e anúncios em nosso site">
-    <title>Últimas Notícias e Anúncios</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="description" content="Portal de notícias atualizado com as últimas informações do Brasil e do mundo.">
+    <title>Portal Notícias</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* ... mantém o estilo anterior ... */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #1e2a38;
+            color: #fff;
+            padding: 10px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav ul li {
+            margin: 5px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff6600;
+        }
+
+        .hero {
+            background: url('https://via.placeholder.com/1920x600') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .news-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .news-item h3 {
+            font-size: 1.2rem;
+            padding: 10px;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .news-item p {
+            padding: 10px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        footer {
+            background-color: #1e2a38;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #ff6600;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🌟 Últimas Notícias e Anúncios 🌟</h1>
-        <div id="noticias">
-            <!-- Notícias carregadas dinamicamente -->
-        </div>
+    <header>
+        <h1>Portal Notícias</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Esportes</a></li>
+                <li><a href="#">Economia</a></li>
+                <li><a href="#">Entretenimento</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <div class="ad">
-            <p><strong>Anúncio Destaque</strong> - Não perca nossas promoções exclusivas!</p>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9852494591359830"
-                 data-ad-slot="6284829050"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-
-        <!-- Botão para baixar o HTML -->
-        <div class="cta" id="download-html">
-            Baixar HTML do Site
-        </div>
-
-        <footer>
-            <p>&copy; 2024 Últimas Notícias. Todos os direitos reservados.</p>
-        </footer>
+    <div class="hero">
+        <h2>As notícias mais quentes do Brasil e do mundo!</h2>
     </div>
 
+    <div class="container">
+        <h2>Últimas Notícias</h2>
+        <div class="news-grid" id="news-container">
+            <!-- Notícias carregadas dinamicamente -->
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Portal Notícias. Desenvolvido por <a href="#">Sua Equipe</a>.</p>
+    </footer>
+
     <script>
-        const apiKey = 'SUA_CHAVE_DE_API'; // Substitua pela sua chave de API
+        const apiKey = 'SUA_CHAVE_DE_API'; // Substitua com sua chave válida
         const url = `https://newsapi.org/v2/top-headlines?country=br&apiKey=${apiKey}`;
 
-        // Fetch de notícias
         fetch(url)
             .then(response => response.json())
             .then(data => {
                 const articles = data.articles;
-                let noticiasHTML = '';
+                let newsHTML = '';
 
                 articles.forEach(article => {
-                    noticiasHTML += `
-                        <div class="article">
-                            <h2>${article.title}</h2>
-                            <p>${article.description}</p>
-                            <a href="${article.url}" target="_blank">Leia mais...</a>
+                    newsHTML += `
+                        <div class="news-item">
+                            <img src="${article.urlToImage || 'https://via.placeholder.com/300x200'}" alt="Notícia">
+                            <h3>${article.title}</h3>
+                            <p>${article.description || 'Descrição não disponível.'}</p>
+                            <a href="${article.url}" target="_blank">Leia mais</a>
                         </div>
                     `;
                 });
 
-                document.getElementById('noticias').innerHTML = noticiasHTML;
+                document.getElementById('news-container').innerHTML = newsHTML;
             })
             .catch(error => {
                 console.error('Erro ao buscar as notícias:', error);
-                document.getElementById('noticias').innerHTML = '<p>Não foi possível carregar as notícias no momento.</p>';
+                document.getElementById('news-container').innerHTML = '<p>Não foi possível carregar as notícias no momento.</p>';
             });
-
-        // Função para baixar HTML
-        document.getElementById('download-html').addEventListener('click', () => {
-            const content = document.documentElement.outerHTML;
-            const blob = new Blob([content], { type: 'text/html' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'site.html';
-            a.click();
-        });
     </script>
 </body>
 </html>
