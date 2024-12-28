@@ -3,48 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Últimas notícias e anúncios em destaque. Confira agora!">
+    <meta name="description" content="Portal de notícias com as últimas novidades e informações.">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9852494591359830" crossorigin="anonymous"></script>
-    <title>Portal Notícias - Atualizado</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Portal Notícias - Seu Diário Digital</title>
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
+            background-color: #f3f4f6;
             color: #333;
         }
 
         .header {
-            background: #0056b3;
-            color: #fff;
-            padding: 15px;
+            background-color: #0056b3;
+            color: white;
+            padding: 20px;
             text-align: center;
         }
 
         .header h1 {
             margin: 0;
-            font-size: 2.5rem;
         }
 
-        .ad-top,
-        .ad-middle,
-        .ad-footer {
-            margin: 20px auto;
+        .ad-section {
             text-align: center;
+            margin: 20px 0;
         }
 
         .highlights {
-            background: #e9ecef;
+            background-color: #e2e8f0;
             padding: 20px;
             margin: 20px auto;
-            text-align: center;
+            max-width: 1200px;
             border-radius: 10px;
         }
 
         .highlights h2 {
-            margin: 0 0 10px;
             font-size: 1.8rem;
         }
 
@@ -54,33 +49,21 @@
             padding: 20px;
         }
 
-        .news-articles {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
         .news-article {
-            background: #fff;
+            background-color: white;
+            margin-bottom: 20px;
             padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .news-article:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .news-article h3 {
+            margin-top: 0;
             font-size: 1.2rem;
-            margin-bottom: 10px;
         }
 
         .news-article p {
-            font-size: 0.9rem;
-            color: #555;
+            color: #666;
         }
 
         .news-article a {
@@ -90,14 +73,18 @@
         }
 
         footer {
-            background: #343a40;
-            color: #fff;
+            background-color: #2d3748;
+            color: white;
             text-align: center;
-            padding: 15px;
+            padding: 10px 0;
+        }
+
+        footer p {
+            margin: 0;
         }
 
         footer a {
-            color: #ffc107;
+            color: #63b3ed;
             text-decoration: none;
         }
     </style>
@@ -109,7 +96,7 @@
     </header>
 
     <!-- Anúncio no topo -->
-    <div class="ad-top">
+    <div class="ad-section">
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-9852494591359830"
@@ -124,11 +111,11 @@
     <!-- Destaques -->
     <section class="highlights">
         <h2>Destaques do Dia</h2>
-        <p>Confira as notícias mais comentadas de hoje!</p>
+        <p>Confira as principais notícias e acontecimentos do momento.</p>
     </section>
 
     <!-- Anúncio no meio -->
-    <div class="ad-middle">
+    <div class="ad-section">
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-9852494591359830"
@@ -142,13 +129,25 @@
 
     <!-- Notícias -->
     <section class="news-section">
-        <div class="news-articles" id="noticias">
-            <!-- Notícias serão carregadas aqui -->
+        <div class="news-article">
+            <h3>Notícia 1</h3>
+            <p>Detalhes da notícia 1. Leia mais sobre este assunto clicando no link abaixo.</p>
+            <a href="#">Leia mais...</a>
+        </div>
+        <div class="news-article">
+            <h3>Notícia 2</h3>
+            <p>Detalhes da notícia 2. Leia mais sobre este assunto clicando no link abaixo.</p>
+            <a href="#">Leia mais...</a>
+        </div>
+        <div class="news-article">
+            <h3>Notícia 3</h3>
+            <p>Detalhes da notícia 3. Leia mais sobre este assunto clicando no link abaixo.</p>
+            <a href="#">Leia mais...</a>
         </div>
     </section>
 
     <!-- Anúncio no rodapé -->
-    <div class="ad-footer">
+    <div class="ad-section">
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-9852494591359830"
@@ -162,36 +161,7 @@
 
     <!-- Rodapé -->
     <footer>
-        <p>&copy; 2024 Portal Notícias. Todos os direitos reservados. <a href="#">Termos de uso</a>.</p>
+        <p>&copy; 2024 Portal Notícias. Todos os direitos reservados. <a href="#">Política de Privacidade</a></p>
     </footer>
-
-    <script>
-        // Sua chave da API NewsAPI
-        const apiKey = 'SUA_CHAVE_DE_API'; // Substitua por sua chave válida
-        const url = `https://newsapi.org/v2/top-headlines?country=br&apiKey=${apiKey}`;
-
-        fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            const articles = data.articles;
-            let newsHTML = '';
-
-            articles.forEach(article => {
-                newsHTML += `
-                    <div class="news-article">
-                        <h3>${article.title}</h3>
-                        <p>${article.description || 'Descrição não disponível'}</p>
-                        <a href="${article.url}" target="_blank">Leia mais...</a>
-                    </div>
-                `;
-            });
-
-            document.getElementById('noticias').innerHTML = newsHTML;
-        })
-        .catch(error => {
-            console.error('Erro ao buscar notícias:', error);
-            document.getElementById('noticias').innerHTML = '<p>Não foi possível carregar as notícias no momento.</p>';
-        });
-    </script>
 </body>
 </html>
