@@ -5,103 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Site de perguntas e respostas com IA para ajudar você em diversas áreas.">
     <title>IA Responde - Site Aprovável pelo AdSense</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: #f4f4f4;
+            color: #333;
+        }
 
+        header {
+            background: #007BFF;
+            color: #fff;
+            padding: 20px 0;
+        }
 
-<style>
+        header h1 {
+            text-align: center;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    background: #f4f4f4;
-    color: #333;
-}
+        header nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
 
-header {
-    background: #007BFF;
-    color: #fff;
-    padding: 20px 0;
-}
+        header nav ul li {
+            margin: 0 15px;
+        }
 
-header h1 {
-    text-align: center;
-}
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
 
-header nav ul {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 0;
-}
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
 
-header nav ul li {
-    margin: 0 15px;
-}
+        h2 {
+            margin-top: 20px;
+        }
 
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
+        #chat-box {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            height: 300px;
+            overflow-y: auto;
+        }
 
-.container {
-    max-width: 1100px;
-    margin: auto;
-    overflow: hidden;
-    padding: 0 20px;
-}
+        #chat-input {
+            display: flex;
+            gap: 10px;
+        }
 
-h2 {
-    margin-top: 20px;
-}
+        input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
 
-#chat-box {
-    background: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
-}
+        button {
+            padding: 10px 20px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
 
-#chat-input {
-    display: flex;
-    gap: 10px;
-}
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
 
-input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-}
+        .adsense {
+            text-align: center;
+            margin: 20px 0;
+        }
 
-button {
-    padding: 10px 20px;
-    background: #007BFF;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-.adsense {
-    text-align: center;
-    margin: 20px 0;
-}
-
-footer {
-    background: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    margin-top: 20px;
-}
-
-
-</style>
-
-
-  </head>
+    </style>
+</head>
 <body>
     <header>
         <div class="container">
@@ -129,8 +122,7 @@ footer {
             <div class="container">
                 <h2>Perguntas e Respostas</h2>
                 <div id="chat-box">
-                    <p><strong>Usuário:</strong> Como funciona este site?</p>
-                    <p><strong>IA:</strong> Este site utiliza IA para responder suas perguntas em tempo real!</p>
+                    <!-- As perguntas e respostas serão exibidas aqui -->
                 </div>
                 <div id="chat-input">
                     <input type="text" id="user-input" placeholder="Digite sua pergunta..." />
@@ -139,7 +131,7 @@ footer {
             </div>
         </section>
 
-        <!-- AdSense Section -->
+        <!-- Seção de Anúncio do Google AdSense -->
         <section class="adsense">
             <div class="container">
                 <h2>Anúncios</h2>
@@ -175,6 +167,38 @@ footer {
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById('send-btn').addEventListener('click', function () {
+            const userInput = document.getElementById('user-input').value;
+
+            if (userInput.trim() !== "") {
+                const chatBox = document.getElementById('chat-box');
+                chatBox.innerHTML += `<p><strong>Usuário:</strong> ${userInput}</p>`;
+
+                // Limpar o campo de input
+                document.getElementById('user-input').value = "";
+
+                // Resposta simples da IA (com base na pergunta)
+                const response = getAIResponse(userInput);
+                
+                chatBox.innerHTML += `<p><strong>IA:</strong> ${response}</p>`;
+            }
+        });
+
+        function getAIResponse(question) {
+            // Respostas simples, como exemplo
+            const lowerCaseQuestion = question.toLowerCase();
+
+            if (lowerCaseQuestion.includes("como funciona")) {
+                return "Este site usa uma IA para responder suas perguntas em tempo real.";
+            } else if (lowerCaseQuestion.includes("quem é você")) {
+                return "Eu sou uma inteligência artificial que responde suas perguntas!";
+            } else if (lowerCaseQuestion.includes("qual é o seu nome")) {
+                return "Eu sou o assistente IA, pronto para ajudar!";
+            } else {
+                return "Desculpe, não entendi sua pergunta. Tente novamente!";
+            }
+        }
+    </script>
 </body>
 </html>
